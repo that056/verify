@@ -1,0 +1,241 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .form-item{
+            position: relative;
+           
+            padding: 5;
+            max-width: 100%;
+            text-align: center;
+           
+        }
+        .span-holder{
+            position: relative;
+          
+            
+        }
+        span{
+            font-family: monospace;
+            letter-spacing: 1.5px;
+
+        }
+        input{
+            padding: 10;
+            border: 1px solid rgb(189, 189, 189);
+            border-radius: 5px;
+
+        }
+        input::placeholder{
+            text-align: center;
+        }
+        #errortxt{
+            font-size: 12px;
+            font-family: monospace;
+            color: red;
+            opacity: 0;
+            transition: all 1s ease;
+        }
+        .error{
+            border: 1px solid rgb(168, 41, 41);
+        }
+        .sucess{
+            border: 1px solid rgb(28, 224, 123);
+        }
+        .form-item button{
+            padding: 10;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            background-color: transparent;
+            border: 1px solid rgb(73, 73, 73);
+            border-radius: 5px;
+        }
+        input:focus{
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <form action="jjjk">
+        <div class="form-item">
+            <div class="span-holder-Name"> 
+            </div>
+              <br> 
+              <input type="text" placeholder="Full Name" id="Fullname" name="fullname" required>         
+        </div>
+        <div class="form-item">
+            <div class="span-holder-Email"> 
+            </div>
+              <br> 
+              <input type="email" placeholder="Email" id="email" name="email" required>         
+        </div>
+    
+        <div class="form-item">
+            <div class="span-holder-Password"> 
+            </div>
+              <br> 
+              <input type="password" placeholder="Password" id="password" name="password" required>         
+        </div>
+    
+        <div class="form-item">
+            <div class="span-holder-C-Password"> 
+            </div>
+              <br> 
+              <input type="password" placeholder="Confirm Password" id="c-password" required>         
+                <p id="errortxt">Passwords Dont Match</p>
+            </div>
+
+            <div class="form-item">
+               
+                  <button>Create Account</button>
+                </div>
+
+    </form>
+
+    <script>
+      
+        let words =[]
+       const inputFullName = document.getElementById('Fullname')
+       inputFullName.addEventListener('click', () => {
+            if(inputFullName.placeholder===""){
+
+                }
+                else{
+    const span_holder = document.querySelector('.span-holder-Name')
+    console.log('input focus');
+    let placeholderValue = inputFullName.placeholder
+    inputFullName.placeholder=""
+     
+  
+        for(var i =0;i<placeholderValue.length;i++){
+            words.push(placeholderValue.charAt(i));
+   }
+  
+    words.forEach(char =>{
+        const spanElement =`<span>${char}</span>`
+        span_holder.innerHTML+=spanElement
+    })
+    words =[]
+}
+       })
+       
+
+
+const inputEmail = document.getElementById('email')
+inputEmail.addEventListener('click', () => {
+            if(inputEmail.placeholder===""){
+
+                }
+                else{
+    const span_holder = document.querySelector('.span-holder-Email')
+    console.log('input focus');
+    let placeholderValue = inputEmail.placeholder
+    inputEmail.placeholder=""
+     
+  
+        for(var i =0;i<placeholderValue.length;i++){
+            words.push(placeholderValue.charAt(i));
+   }
+  
+    words.forEach(char =>{
+        const spanElement =`<span>${char}</span>`
+        span_holder.innerHTML+=spanElement
+    })
+    words =[]
+}
+
+   
+    
+});
+
+
+const inputPassword = document.getElementById('password')
+inputPassword.addEventListener('click', () => {
+            if(inputPassword.placeholder===""){
+
+                }
+                else{
+    const span_holder = document.querySelector('.span-holder-Password')
+    console.log('input focus');
+    let placeholderValue = inputPassword.placeholder
+    inputPassword.placeholder=""
+     
+  
+        for(var i =0;i<placeholderValue.length;i++){
+            words.push(placeholderValue.charAt(i));
+   }
+  
+    words.forEach(char =>{
+        const spanElement =`<span>${char}</span>`
+        span_holder.innerHTML+=spanElement
+    })
+    words =[]
+}
+
+   
+    
+});
+const inputPasswordCornfirm = document.getElementById('c-password')
+inputPasswordCornfirm.addEventListener('click', () => {
+            if(inputPasswordCornfirm.placeholder===""){
+
+                }
+                else{
+    const span_holder = document.querySelector('.span-holder-C-Password')
+    console.log('input focus');
+    let placeholderValue = inputPasswordCornfirm.placeholder
+    inputPasswordCornfirm.placeholder=""
+     
+  
+        for(var i =0;i<placeholderValue.length;i++){
+            words.push(placeholderValue.charAt(i));
+   }
+  
+    words.forEach(char =>{
+        const spanElement =`<span>${char}</span>`
+        span_holder.innerHTML+=spanElement
+    })
+    words =[]
+}
+
+   
+    
+});
+let enteredpassword =''
+let confirmpassword =''
+document.getElementById('password').addEventListener('input',(e)=>{
+    enteredpassword =e.target.value;
+    console.log(enteredpassword)
+})
+document.getElementById('c-password').addEventListener('input',(e)=>{
+    confirmpassword =e.target.value;
+    console.log(confirmpassword)
+    if(confirmpassword === enteredpassword){
+        document.getElementById('password').classList.add('sucess')
+        document.getElementById('c-password').classList.add('sucess')
+
+    }
+   else if(confirmpassword !== enteredpassword){
+    document.getElementById('password').classList.remove('sucess')
+        document.getElementById('c-password').classList.remove('sucess')
+    document.getElementById('password').classList.add('error')
+        document.getElementById('c-password').classList.add('error')
+        document.getElementById('errortxt').style.opacity=1
+        setInterval(()=>{
+            document.getElementById('errortxt').style.opacity=0
+        },4000)
+
+    }
+   
+    console.log(enteredpassword)
+})
+
+
+
+       
+        
+
+    </script>
+</body>
+</html>
